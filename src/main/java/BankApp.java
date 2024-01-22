@@ -1,25 +1,26 @@
+import dao.BankDAO;
 import db.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class BankApp {
     public static void main(String[] args) {
-        Connection conn = DBConnection.getInstance();
-        try {
-            String insert = "insert into account_tb(password, balance, created_at) values(?,?,now())";
-            String delete = "delete from account_tb where number = ?";
-            String update = "update account_tb set balance = balance + ? where number = ?";
-            PreparedStatement pstmt = conn.prepareStatement(delete);//라이브러리 버퍼 사용 즉 버퍼 달기
+        Scanner sc = new Scanner(System.in);
 
-            // parameterIndex는 쿼리마다에 물음표 순서
-            pstmt.setInt(1,3);
+        System.out.println("삭제할 계좌 번호를 입력해주세요: ");
+        int number = sc.nextInt();
 
-            int num = pstmt.executeUpdate();//플러쉬 역할을 가지고 있음
-            System.out.println(num);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        BankDAO dao = new BankDAO();
+
+        int result = dao.deleteByNumber(number);
+
+        if (result == 1){
+            System.out.println("삭제 성공했습니다.");
+        }else{
+            System.out.println("삭제 실패했습니다");
         }
     }
 }

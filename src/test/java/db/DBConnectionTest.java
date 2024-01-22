@@ -15,15 +15,17 @@ public class DBConnectionTest {
     // @Test 붙이면 메서드 별로 실행가능
     @Test
     public void getInstance_Test(){
-        String username = "root";
-        String password = "1234";
-        String url = "jdbc:mariadb://localhost:3306/cosdb"; //프로토콜//ip주소:포트번호/테이블 명
+        //given = 파라미터
+        //테스트 코드에서는 매개변수를 직접 못적음
 
-        // 프로토콜이 적용된 소켓
-        try {
-            Connection conn = DriverManager.getConnection(url, username, password);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        //when = 본 코드 실행
+        Connection conn = DBConnection.getInstance();
+
+        //then = 눈 검증
+        if (conn == null){
+            System.out.println("실패");
+        }else{
+            System.out.println("성공");
         }
 
     }
