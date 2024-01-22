@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 *DB에 Slect 한 데이터를 담기 위한 오브젝트
  */
 @ToString
-@AllArgsConstructor //모든 파라미터가 있는 친구들을 자동으로 생성자로 만들어 주는 lobok 라이브버리중 하나
+@AllArgsConstructor //모든 파라미터가 있는 친구들을 자동으로 생성자로 만들어 주는 lombok 라이브버리중 하나
 @Getter
 public class Account {
     private int number;
